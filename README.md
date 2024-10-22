@@ -10,4 +10,5 @@ Currently, two official plugins are available:
 =======
 # frescuraTica
 Trabajo para proyecto de bases de datos
+Este proyecto la parte principal es la base de datos, para luego ser utulizada en una apliación web.
 >>>>>>> 0b624159c3549480ac4c3bd008b06360d07ba5d6
