@@ -1,0 +1,171 @@
+.header_top {
+    padding: 15px 0px;
+    background: #1E3E70;
+    color: #fff;
+}
+
+.logo h1 a span {
+    font-size: 2.0rem;
+}
+
+.logo h1 a i {
+    font-size: 2.2rem;
+    color: #fff;
+
+}
+
+.logo h1 a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.logo h1 {
+    line-height: 1.4rem;
+}
+
+.header_top_left {
+    display: flex;
+    align-items: center;
+    column-gap: 2rem;
+}
+
+.header_top_left span {
+    font-size: 0.9rem;
+}
+
+.header_top_right {
+    display: flex;
+    align-items: center;
+    column-gap: 0.4rem;
+}
+
+.header_top_help {
+    display: flex;
+    align-items: center;
+    column-gap: 0.4rem;
+}
+
+.header_top_help i {
+    background: #fff;
+    color: #1E3E70;
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+}
+
+.header_top_right a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.header_top_right a:hover {
+    color: #fff;
+}
+
+.Sub_title_logo {
+    color: #f9a826;
+}
+
+/* ===== Heder Middle Section ===== */
+.header_middle {
+    padding: 40px 0px;
+}
+
+.header_location span i {
+    font-size: 2.2rem;
+    color: #1E3E70;
+}
+
+.header_location-content h4 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #1E3E70;
+}
+
+.header_location-content h6 {
+    font-weight: 500;
+}
+
+.header_btn {
+    background: #1E3E70 !important;
+
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.header_btn a {
+    display: flex;
+    align-items: center;
+    column-gap: .4rem;
+    text-decoration: none;
+    color: #fff;
+    justify-content: center;
+    font-size: 1.0rem;
+}
+
+.header_btn a:hover {
+    color: #f9a826;
+}
+
+/* =========== main navbar styles ========= */
+.main_navbar {
+    padding: 15px 0px;
+    background: #1E3E70;
+}
+
+.mobile_menu i {
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.mobile_menu {
+    display: none;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    column-gap: 3.7rem;
+}
+
+
+.nav_item {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav_item:hover {
+
+    color: #f9a826;
+}
+
+.nav_active{
+    color: #f9a826;
+}
+
+.search_box {
+    border: 1px solid #977c7c2f;
+    display: flex;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 50px;
+    background: #192b48;
+
+}
+
+.search_box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search_box input::placeholder {
+    font-size: .8rem;
+}

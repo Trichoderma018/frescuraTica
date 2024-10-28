@@ -1,0 +1,42 @@
+.footer {
+    background: #1E3E70;
+    padding-top: 50px;
+    padding-bottom: 15px;
+}
+
+.footer_logo-content {
+    color: #fff;
+    /* separa del logo*/
+    margin-top: 25px;
+    /* separa los renglones*/
+    line-height: 30px;
+}
+
+.quick_link {
+    border: none !important;
+    background: transparent !important;
+}
+
+.quick_link a {
+    color:#fff;
+    text-decoration: none;
+    font-weight: 300;
+    transition: 0.3s;
+}
+
+.quick_link a:hover{
+    color: #ff8c00;
+}
+
+.footer_link-title{
+    color: #fff;
+}
+
+.office_info{
+    color: #fff;
+    font-weight: 300;
+}
+
+.footer_bottom {
+    border-top: 1px solid #7c8a972f;
+}
