@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <div className="footer">
-      hola
+      Este es el footer
     </div>
 
   )
