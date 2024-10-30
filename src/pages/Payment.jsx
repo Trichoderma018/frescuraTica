@@ -4,7 +4,7 @@ const Payment = () => {
 
     return (
       <div className="footer">
-        hola
+        Este es pagos
       </div>
   
     )

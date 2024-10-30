@@ -7,6 +7,7 @@ import LogIn from '../pages/LogIn.jsx'
 import LogOut from '../pages/LogOut.jsx'
 import About from '../pages/About.jsx'
 import Layout from '../components/Layout/Layout.jsx'
+import Payment from '../pages/Payment.jsx'
 
 const routers = () => {
   return <Routes>
@@ -15,10 +16,11 @@ const routers = () => {
 
     <Route path='/Orders' element={<Orders />} />
     <Route path= '/Inventory' element={<Inventory />} />
-    <Route path= '/About' element={< About/>} />
-    <Route path= '/logIn' element={< LogIn/>} />
-    <Route path= '/logOut' element={< LogOut/>} />
-    <Route path= '/layout' element={< Layout/>} />
+    <Route path= '/About' element={<About />} />
+    <Route path= '/Payment' element={<Payment />} />
+    <Route path= '/logIn' element={<LogIn />} />
+    <Route path= '/logOut' element={<LogOut />} />
+    <Route path= '/layout' element={<Layout />} />
   </Routes>
 }
 

@@ -4,7 +4,7 @@ const Orders = () => {
 
     return (
       <div className="footer">
-        hola
+        Este es pedidos
       </div>
   
     )

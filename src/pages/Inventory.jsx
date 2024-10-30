@@ -4,7 +4,7 @@ const Invetory = () => {
 
     return (
       <div className="footer">
-        hola
+        Es es el inventario
       </div>
   
     )

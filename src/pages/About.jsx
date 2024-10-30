@@ -4,7 +4,7 @@ const About = () => {
 
     return (
       <div className="footer">
-        hola
+        Este es el about acerca de
       </div>
   
     )
