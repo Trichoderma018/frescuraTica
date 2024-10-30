@@ -7,9 +7,9 @@ import '../../src/components/styles/Footer.css'
 const Footer = () => {
 
   return (
-    <div className="footer">
+    <footer className="footer">
       Este es el footer
-    </div>
+    </footer>
 
   )
 }

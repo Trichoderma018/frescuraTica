@@ -5,7 +5,7 @@ import "../../src/components/styles/Header.css";
 
 const Header = () => {
     return (
-      <div className="footer">
+      <div className="header">
         Este es el header
       </div>
 
