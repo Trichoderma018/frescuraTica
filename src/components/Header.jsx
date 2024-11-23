@@ -1,138 +1,148 @@
 import React, { useState } from 'react';
-import { FormGroup, Input, Container, Row, Col } from "reactstrap";
-import { Link, NavLink } from "react-router-dom";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import "../../src/components/styles/Header.css";
-
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+import { 
+  Container, 
+  Typography, 
+  AppBar, 
+  Toolbar, 
+  Box, 
+  Select, 
+  MenuItem, 
+  Button, 
+  InputBase,
+  IconButton
+} from '@mui/material';
+import { 
+  AccountCircle as AccountCircleIcon, 
+  Search as SearchIcon, 
+  Menu as MenuIcon 
+} from '@mui/icons-material';
+import { Link, useNavigate } from 'react-router-dom';
 
 const navLinks = [
-  {
-    path: '/home',
-    display: 'Home'
-  },
-
-  {
-    path: '/about',
-    display: 'Acerca'
-  },
-
-  {
-    path: '/Orders',
-    display: 'Pedidos'
-  },
-
-  {
-    path: '/Payment',
-    display: 'Pagos'
-  },
-
-  {
-    path: '/Inventory',
-    display: 'Inventario'
-  },
-
-]
+  { path: '/home', display: 'Inicio' },
+  { path: '/about', display: 'Nosotros' },
+  { path: '/orders', display: 'Pedidos' },
+  { path: '/payment', display: 'Pagos' },
+  { path: '/inventory', display: 'Inventario' }
+];
 
 const Header = () => {
   const [localName, setLocalName] = useState('');
-  
-  // Función para manejar el cambio en el select
-  const handleLocalNameChange = (e) => {
-    setLocalName(e.target.value);
+  const navigate = useNavigate();
+
+  const handleLocalChange = (event) => {
+    setLocalName(event.target.value);
   };
 
-  return <header className="header">
-    <div className="header_top">
-      {/* ===== Heder Top Section ===== */}
-      <Container>
-        <Row>
-          <Col lg='2' md='3' sm='4' >
-            <div className='logo'>
-              <h1 ><Link to='/home' className="d-flez aling-items-center
-              gap-2">
-                <span>Rent Car<br /> <h5 className='Sub_title_logo'>Service</h5> </span>
-              </Link></h1>
-            </div>
-          </Col>
+  const handleSearch = () => {
+    navigate(`/search?local=${localName}`);
+  };
 
-          <Col lg='3' md='3' sm='2'>
-            <div className="header_top_left">
-              <span>Need help?</span>
-              <span className="header_top_help">
-                +506 8570-8117
-              </span>
-            </div>
-          </Col>
+  return (
+    <AppBar 
+      position="static" 
+      color="default" 
+      elevation={1} 
+      sx={{ backgroundColor: '#8A9A5B' }}
+    >
+      {/* Sección superior del encabezado */}
+      <Toolbar>
+        <Container maxWidth="lg" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {/* Logo */}
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography 
+              variant="h5" 
+              component={Link} 
+              to="/home" 
+              sx={{ 
+                textDecoration: 'none', 
+                color: 'primary.main',
+                fontWeight: 'bold'
+              }}
+            >
+              Frescura Tica
+            </Typography>
+          </Box>
 
-          <Col lg='6' md='6' sm='6'>
-            <div className="header_top_righ d-flex align-items-center justify-content-end gap-3">
-              <Link to="/singin" className="d-flex aling-items-center gap-1"> <AccountCircleIcon />login</Link>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+          {/* Información de contacto y login */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Typography variant="body2">
+              Ayuda: +506 8888-8888
+            </Typography>
+            <Button 
+              startIcon={<AccountCircleIcon />} 
+              variant="outlined" 
+              color="primary"
+              component={Link}
+              to="/signin"
+            >
+              Iniciar Sesión
+            </Button>
+          </Box>
+        </Container>
+      </Toolbar>
 
-    {/* ===== Heder Middle Section ===== */}
-    <div className="header_middle">
-      <Container>
-        <Row>
-          <Col lg='6' md='2' sm='2'>
-            <FormGroup>
-              <Input
-                type="select"
-                name="lugar"
-                id="lugarSelect"
-                value={localName}
-                onChange={handleLocalNameChange}
+      {/* Barra de navegación */}
+      <Toolbar variant="dense" sx={{ backgroundColor: '#8A9A5B' }}>
+        <Container maxWidth="lg" sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {/* Selector de local */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Select
+              value={localName}
+              onChange={handleLocalChange}
+              displayEmpty
+              variant="outlined"
+              size="small"
+              sx={{ minWidth: 200 }}
+            >
+              <MenuItem value="" disabled>Seleccione un local</MenuItem>
+              <MenuItem value="San Jose">San Jose - Frescura Tica</MenuItem>
+            </Select>
+
+            <Button 
+              variant="contained" 
+              color="primary" 
+              onClick={handleSearch}
+            >
+              Buscar
+            </Button>
+          </Box>
+
+          {/* Menú de navegación */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+            {navLinks.map((link) => (
+              <Button
+                key={link.path}
+                component={Link}
+                to={link.path}
+                color="#black"
+                variant="text"
               >
-                <option value="">Seleccione una opción</option>
-                <option value="San Jose Rentacar">San Jose Rentacar</option>
-                <option value="Alajuela Rentacar">Alajuela Rentacar</option>
-                <option value="Cartago Rentacar">Cartago Rentacar</option>
-              </Input>
-            </FormGroup>
-          </Col>
+                {link.display}
+              </Button>
+            ))}
+          </Box>
 
-          <Col lg='6' md='3' sm='0' className="text-end">
-            <button className='header_btn btn'>
-              <Link to={`/cars?localName=${encodeURIComponent(localName)}`}>
-                Search
-              </Link>
-            </button>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-
-    {/* ===== main navigation ===== */}
-    <div className="main_navbar">
-      <Container>
-        <div className='navigation_wrapper d-flex align-items-center justify-content-between'>
-          <span className="mobile_menu">
-            =
-          </span>
-          <div className="navigation">
-            <div className="menu">
-              {
-                navLinks.map((item, index) => (
-                  <NavLink to={item.path} className={navClass => navClass.isActive ? "nav_active nav_item" : "nav_item"}
-                    key={index}> {item.display} </NavLink>
-                ))
-              }
-            </div>
-          </div>
-
-          <div className="nav_right">
-            <div className="search_box">
-              <input type="tex" placeholder="Search Car" />
-            </div>
-          </div>
-        </div>
-      </Container>
-    </div>
-  </header>
+          {/* Barra de búsqueda */}
+          <Box sx={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+            <InputBase
+              placeholder="Buscar..."
+              sx={{
+                border: '1px solid',
+                borderColor: 'divider',
+                borderRadius: 1,
+                px: 1,
+                mr: 1
+              }}
+            />
+            <IconButton color="primary">
+              <SearchIcon />
+            </IconButton>
+          </Box>
+        </Container>
+      </Toolbar>
+    </AppBar>
+  );
 };
 
 export default Header;

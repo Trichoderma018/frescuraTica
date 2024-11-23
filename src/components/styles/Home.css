@@ -1,5 +1,6 @@
 /* Main Layout Styles
 -------------------------------------------------- */
+
 .container {
     width: 100%;
     max-width: 1200px;
@@ -206,3 +207,6 @@
       page-break-inside: avoid;
     }
   }
+
+
+  

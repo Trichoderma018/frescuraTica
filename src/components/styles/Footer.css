@@ -1,5 +1,5 @@
 .footer {
-    background: #1E3E70;
+    background: #8B4513;
     padding-top: 50px;
     padding-bottom: 15px;
 }
@@ -25,7 +25,7 @@
 }
 
 .quick_link a:hover{
-    color: #ff8c00;
+    color: #ffffff;
 }
 
 .footer_link-title{
@@ -38,5 +38,9 @@
 }
 
 .footer_bottom {
-    border-top: 1px solid #7c8a972f;
+    border-top: 1px solid #ffffff2f;
 }
+
+.footer-text {
+    color: white; /* Cambia el color del texto a blanco */
+  }

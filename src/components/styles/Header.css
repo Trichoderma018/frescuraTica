@@ -1,6 +1,6 @@
 .header_top {
     padding: 15px 0px;
-    background: #1E3E70;
+    background: #8A9A5B;
     color: #fff;
 }
 
@@ -48,7 +48,7 @@
 
 .header_top_help i {
     background: #fff;
-    color: #1E3E70;
+    color: #8A9A5B;
     padding: 4px 10px;
     border-radius: 50px;
     font-size: 0.7rem;
@@ -75,13 +75,13 @@
 
 .header_location span i {
     font-size: 2.2rem;
-    color: #1E3E70;
+    color: #8A9A5B;
 }
 
 .header_location-content h4 {
     font-size: 2.2rem;
     font-weight: 600;
-    color: #1E3E70;
+    color: #8A9A5B;
 }
 
 .header_location-content h6 {
@@ -89,7 +89,7 @@
 }
 
 .header_btn {
-    background: #1E3E70 !important;
+    background: #8A9A5B !important;
 
     padding: 10px 20px;
     border: none;
@@ -108,13 +108,13 @@
 }
 
 .header_btn a:hover {
-    color: #f9a826;
+    color: #8A9A5B;
 }
 
 /* =========== main navbar styles ========= */
 .main_navbar {
     padding: 15px 0px;
-    background: #1E3E70;
+    background: #8A9A5B;
 }
 
 .mobile_menu i {

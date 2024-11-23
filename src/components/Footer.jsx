@@ -1,103 +1,91 @@
-import React from 'react'
-import '../../src/components/styles/Footer.css'
-import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
+import React from "react";
+import { Box, Container, Grid, Typography, IconButton } from "@mui/material";
+import CopyrightIcon from "@mui/icons-material/Copyright";
 import { Link } from "react-router-dom";
-import CopyrightIcon from '@mui/icons-material/Copyright';
-
-const quickLinks = [
-  {
-    path: '/about',
-    display: 'About'
-  },
-
-  {
-    path: '#',
-    display: 'Politicas de Privacidad'
-  },
-  {
-    path: '/blogs',
-    display: 'Blog'
-  },
-  {
-    path: '/contact',
-    display: 'Contact'
-  },
-]
+import AgricultureIcon from "@mui/icons-material/Agriculture";
 
 const Footer = () => {
-
   return (
-    <footer className="footer">
-      <Container>
-        <Row>
-          <Col lg='5' md='4' sm='12'>
-            <div className='logo'>
-              <h1 ><Link to='/home' className="d-flez aling-items-center
-              gap-2">
-                
-                <span>Rent Car<br/> <h5>Service</h5> </span>
-              </Link></h1>
-            </div>
+    <Box component="footer" sx={{ bgcolor: "#8B4513", py: 4 }}>
+      <Container maxWidth="lg">
+        <Grid container spacing={4}>
+          {/* Logo y descripción */}
+          <Grid item xs={12} md={5}>
+            <Box display="flex" alignItems="center" gap={2} mb={2}>
+              <AgricultureIcon fontSize="large" color="primary" />
+              <Typography
+                component={Link}
+                to="/home"
+                variant="h5"
+                color="primary"
+                fontWeight="bold"
+                underline="none"
+                sx={{ textDecoration: "none" }}
+              >
+                Frescura Tica
+              </Typography>
+            </Box>
+            <Typography variant="body2" paragraph>
+              Ofrecemos una amplia variedad de
+              productos frescos que promueven un estilo de vida saludable,
+              garantizando calidad y sostenibilidad en cada uno de nuestros
+              artículos.
+            </Typography>
+            <Typography variant="body2" paragraph>
+              En Frescura Tica, nos destacamos por nuestra transparencia y
+              compromiso con nuestros clientes. Sin cargos ocultos, brindamos
+              una experiencia de compra confiable y satisfactoria.
+            </Typography>
+            <Typography variant="body2">
+              ¡Únete a nosotros y descubre lo mejor de la agricultura
+              costarricense!
+            </Typography>
+          </Grid>
 
-            <p className="footer_logo-content">
-            Somos la empresa líder en alquiler de vehículos
-             en Costa Rica, ofreciendo un servicio completo a 
-             precios razonables. Nos destacamos por la 
-             transparencia, sin cargos ocultos, y con 
-             la opción de coberturas sin deducible,
-             brindando a nuestros clientes la 
-             tranquilidad que necesitan en cada viaje
-            </p>
-          </Col>
+          {/* Tienda */}
+          <Grid item xs={12} md={2}>
+            <Typography variant="h6" fontWeight="bold" gutterBottom>
+              Nuestra Tienda
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              San José, Costa Rica
+            </Typography>
+          </Grid>
 
-          <Col lg='2' md='4' sm='6'>
-            <div className="mb-4">
-              <h5 className="footer_link-title">Quick links</h5>
-              <ListGroup>
-                {
-                  quickLinks.map((item, index) => (
-                    <ListGroupItem key={index} className='p-0 mt-3 quick_link' >
-                      <Link to={item.path}>{item.display}</Link>
-                    </ListGroupItem>
-                  ))
-                }
-              </ListGroup>
-            </div>
-          </Col>
+          {/* Dirección */}
+          <Grid item xs={12} md={3}>
+            <Typography variant="h6" fontWeight="bold" gutterBottom>
+              Dirección
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              89 San José, San José, Costa Rica
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              Celular: +506 8888-8888
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              Email: frescuratica@gmail.com
+            </Typography>
+          </Grid>
+        </Grid>
 
-          <Col lg='2' md='4' sm='6'>
-            <div className="mb-4">
-              <h5 className="footer_link-title mb-4">Oficinas</h5>
-              <p className='office_info'>Cartago, Costa Rica</p>
-              <p className='office_info'>Alajuela, Costa Rica</p>
-              <p className='office_info'>San Jose, Costa Rica</p>
-            </div>
-          </Col>
-        
-
-          <Col lg='3' md='4' sm='6'>
-            <div className="mb-4">
-              <h5 className="footer_link-title mb-4">Head Office</h5>
-              <p className='office_info'>89 Cartago, Cartago, Costa Rica</p>
-              <p className='office_info'>Celular: +506 8670-8117</p>
-              <p className='office_info'>Email: rentaCar@gmail.com</p>
-              <p className='office_info'>Abiertos 24h</p>
-            </div>
-          </Col>
-
-          <Col lg='12'>
-            <div className="footer_bottom">
-              <p className="section_description d-flex aling-items-center justify-content-center gap-1 pt-4">
-                <CopyrightIcon></CopyrightIcon>Copyrigth 2024, Developed by Grupo 4. Proyecto Uam
-              </p>
-            </div>
-          </Col>
-
-        </Row>
+        {/* Derechos de autor */}
+        <Box textAlign="center" mt={4}>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            gap={1}
+          >
+            <CopyrightIcon fontSize="small" /> Copyright 2024, Developed by
+            Grupo 12. Proyecto Bases de Datos 2 UAM.
+          </Typography>
+        </Box>
       </Container>
-    </footer >
+    </Box>
+  );
+};
 
-  )
-}
-
-export default Footer
+export default Footer;
