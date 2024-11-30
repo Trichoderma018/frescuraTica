@@ -9,6 +9,8 @@ const Inventory = () => {
   const [newProduct, setNewProduct] = useState({ name: "", quantity: 0, price: 0 }); // Estado para nuevos productos
   const [snackbarOpen, setSnackbarOpen] = useState(false); // Estado para abrir el snackbar
   const [snackbarMessage, setSnackbarMessage] = useState(""); // Mensaje de snackbar
+  const [searchQuery, setSearchQuery] = useState(""); // Estado para la búsqueda de productos
+  const [editingProduct, setEditingProduct] = useState(null); // Estado para editar un producto existente
 
   // Función para obtener los productos del inventario desde la base de datos
   const fetchProducts = async () => {
@@ -57,6 +59,48 @@ const Inventory = () => {
     }
   };
 
+  // Función para manejar la edición de productos
+  const handleEditProduct = async (product) => {
+    setEditingProduct(product); // Establecemos el producto a editar
+    setNewProduct({ name: product.name, quantity: product.quantity, price: product.price }); // Cargamos los datos del producto a editar
+  };
+
+  // Función para guardar los cambios en un producto editado
+  const handleSaveEditedProduct = async () => {
+    if (!newProduct.name || newProduct.quantity <= 0 || newProduct.price <= 0) {
+      setSnackbarMessage("Por favor ingresa datos válidos para el producto.");
+      setSnackbarOpen(true);
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/inventory/${editingProduct.id}`, { // URL para editar producto
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newProduct), // Enviamos los datos editados
+      });
+
+      if (!response.ok) {
+        throw new Error("No se pudo editar el producto.");
+      }
+
+      setSnackbarMessage("Producto editado exitosamente.");
+      setSnackbarOpen(true);
+      fetchProducts(); // Volver a cargar los productos
+      setNewProduct({ name: "", quantity: 0, price: 0 }); // Limpiar el formulario
+      setEditingProduct(null); // Limpiar el estado de edición
+    } catch (error) {
+      console.error("Error al editar el producto:", error);
+      setSnackbarMessage("Hubo un error al editar el producto.");
+      setSnackbarOpen(true);
+    }
+  };
+
+  // Función para manejar la búsqueda de productos
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value.toLowerCase()); // Actualizamos el estado con el valor de la búsqueda
+  };
+
   // useEffect para cargar los productos al montar el componente
   useEffect(() => {
     fetchProducts(); // Llamamos a la función para obtener los productos
@@ -64,12 +108,22 @@ const Inventory = () => {
 
   return (
     <Container maxWidth="md" style={{ marginTop: '40px', marginBottom: '40px' }}>
-      {/* Título principal de la página */}
       <Typography variant="h4" align="center" gutterBottom>
         Inventario de Productos
       </Typography>
 
-      {/* Contenedor de productos */}
+      {/* Barra de búsqueda */}
+      <Box mb={4}>
+        <TextField
+          label="Buscar Producto"
+          variant="outlined"
+          fullWidth
+          value={searchQuery}
+          onChange={handleSearch}
+        />
+      </Box>
+
+      {/* Cargando productos */}
       {loading ? (
         <Box display="flex" justifyContent="center" alignItems="center" minHeight="300px">
           <CircularProgress />
@@ -84,32 +138,40 @@ const Inventory = () => {
                   <TableCell>Nombre del Producto</TableCell>
                   <TableCell>Cantidad</TableCell>
                   <TableCell>Precio</TableCell>
+                  <TableCell>Acciones</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {/* Mapeamos los productos para crear filas en la tabla */}
-                {products.map((product) => (
-                  <TableRow key={product.id}>
-                    <TableCell>{product.name}</TableCell>
-                    <TableCell>{product.quantity}</TableCell>
-                    <TableCell>${product.price.toFixed(2)}</TableCell> {/* Formateamos el precio */}
-                  </TableRow>
-                ))}
+                {/* Filtrar productos por la búsqueda */}
+                {products
+                  .filter(product => product.name.toLowerCase().includes(searchQuery))
+                  .map((product) => (
+                    <TableRow key={product.id}>
+                      <TableCell>{product.name}</TableCell>
+                      <TableCell>{product.quantity}</TableCell>
+                      <TableCell>${product.price.toFixed(2)}</TableCell>
+                      <TableCell>
+                        <Button variant="contained" color="secondary" onClick={() => handleEditProduct(product)}>
+                          Editar
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
 
-          {/* Mensaje final en caso de que no haya productos */}
+          {/* Mensaje si no hay productos */}
           {products.length === 0 && (
             <Typography variant="body1" align="center" style={{ marginTop: '20px' }}>
               No hay productos disponibles en el inventario.
             </Typography>
           )}
 
-          {/* Formulario para agregar nuevos productos */}
+          {/* Formulario para agregar o editar productos */}
           <Box mt={4} p={2} bgcolor="#f5f5f5" borderRadius={2}>
             <Typography variant="h6" gutterBottom>
-              Agregar Nuevo Producto
+              {editingProduct ? "Editar Producto" : "Agregar Nuevo Producto"}
             </Typography>
             <Grid container spacing={2}>
               <Grid item xs={12} md={4}>
@@ -145,11 +207,11 @@ const Inventory = () => {
             <Button
               variant="contained"
               color="primary"
-              onClick={handleAddProduct}
+              onClick={editingProduct ? handleSaveEditedProduct : handleAddProduct}
               fullWidth
               style={{ marginTop: '20px' }}
             >
-              Agregar Producto
+              {editingProduct ? "Guardar Cambios" : "Agregar Producto"}
             </Button>
           </Box>
         </>
@@ -161,10 +223,19 @@ const Inventory = () => {
         autoHideDuration={6000}
         onClose={() => setSnackbarOpen(false)}
       >
-        <Alert onClose={() => setSnackbarOpen(false)} severity={error ? "error" : "success"}>
+        <Alert onClose={() => setSnackbarOpen(false)} severity={error ? "error" : "success"} sx={{ width: '100%' }}>
           {snackbarMessage}
         </Alert>
       </Snackbar>
+
+       {/* Footer */}
+      <Box sx={{ mt: 6, py: 4, bgcolor: "#2e7d32", color: "white", textAlign: "center" }}>
+  
+        
+        <Typography variant="body2">
+          © 2024 Frescura Tica. Todos los derechos reservados.
+        </Typography>
+      </Box>
     </Container>
   );
 };

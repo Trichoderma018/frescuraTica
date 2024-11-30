@@ -4,6 +4,7 @@ import { Container, Typography, Grid, Box, Paper, Button } from "@mui/material";
 import AgricultureIcon from "@mui/icons-material/Agriculture";
 import StarIcon from "@mui/icons-material/Star";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import PeopleIcon from "@mui/icons-material/People";
 
 const About = () => {
   const navigate = useNavigate(); // Hook para redirigir al usuario
@@ -52,6 +53,21 @@ const About = () => {
         </Grid>
       </Grid>
 
+      {/* Sección sobre los creadores */}
+      <Box textAlign="center" sx={{ mt: 5 }}>
+        <Paper elevation={3} sx={{ p: 4, bgcolor: "#fff3e0" }}>
+          <PeopleIcon fontSize="large" color="primary" />
+          <Typography variant="h5" fontWeight="bold" gutterBottom>
+            Conoce a Nuestros Líderes
+          </Typography>
+          <Typography variant="body1" color="textSecondary">
+            <strong>Juan Pablo Quesada Ramírez</strong> – CEO
+            <br />
+            <strong>Daniel Alberto Palma Solís</strong> – Co-Creador
+          </Typography>
+        </Paper>
+      </Box>
+
       <Box textAlign="center" sx={{ mt: 5 }}>
         <Paper elevation={1} sx={{ p: 4, bgcolor: "#fce4ec" }}>
           <VerifiedIcon fontSize="large" color="success" />
@@ -70,6 +86,13 @@ const About = () => {
             Ir a la Tienda
           </Button>
         </Paper>
+      </Box>
+
+      {/* Footer */}
+      <Box sx={{ mt: 6, py: 4, bgcolor: "#2e7d32", color: "white", textAlign: "center" }}>
+        <Typography variant="body2">
+          © 2024 Frescura Tica. Todos los derechos reservados.
+        </Typography>
       </Box>
     </Container>
   );

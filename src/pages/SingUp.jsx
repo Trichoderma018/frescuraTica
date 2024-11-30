@@ -16,9 +16,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+      {'© '}
       <Link color="inherit" href="/">
-        Your Website
+        Frescura Tica
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -26,7 +26,7 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
+// Crear un tema por defecto
 const defaultTheme = createTheme();
 
 export default function SignUp() {
@@ -36,6 +36,8 @@ export default function SignUp() {
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
     });
   };
 
@@ -51,11 +53,11 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Regístrate
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -66,7 +68,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="Nombre"
                   autoFocus
                 />
               </Grid>
@@ -75,7 +77,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
+                  label="Apellido"
                   name="lastName"
                   autoComplete="family-name"
                 />
@@ -85,7 +87,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Correo Electrónico"
                   name="email"
                   autoComplete="email"
                 />
@@ -95,7 +97,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Contraseña"
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -104,7 +106,7 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  label="Quiero recibir promociones y actualizaciones por correo electrónico."
                 />
               </Grid>
             </Grid>
@@ -114,18 +116,33 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Regístrate
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/singin" variant="body2">
-                  Already have an account? Sign in
+                <Link href="/signin" variant="body2">
+                  ¿Ya tienes una cuenta? Inicia sesión
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+
+        {/* Footer con estilo */}
+        <Box sx={{ py: 4, bgcolor: "#2e7d32", color: "white", textAlign: "center", width: '100%' }}>
+          <Typography variant="body2">
+            © 2024 Frescura Tica. Todos los derechos reservados.
+          </Typography>
+          <Grid container justifyContent="center" spacing={2}>
+            <Grid item>
+            
+            
+            </Grid>
+            <Grid item>
+             
+            </Grid>
+          </Grid>
+        </Box>
       </Container>
     </ThemeProvider>
   );

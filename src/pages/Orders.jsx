@@ -3,7 +3,6 @@ import {
   Container, 
   Typography, 
   Button, 
-  TextField, 
   Grid, 
   Card, 
   CardContent, 
@@ -11,7 +10,10 @@ import {
   IconButton, 
   List, 
   ListItem, 
-  ListItemText 
+  ListItemText, 
+  Snackbar, 
+  Alert, 
+  Box
 } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -19,6 +21,8 @@ import { useNavigate } from "react-router-dom"; // Para redirigir a otra página
 
 const Orders = () => {
   const [cart, setCart] = useState([]);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
   const navigate = useNavigate(); // Hook para manejar la navegación
 
   const products = [
@@ -35,13 +39,19 @@ const Orders = () => {
           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
         )
       );
+      setSnackbarMessage(`${product.name} ha sido añadido nuevamente al carrito.`);
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
+      setSnackbarMessage(`${product.name} ha sido añadido al carrito.`);
     }
+    setOpenSnackbar(true);
   };
 
   const handleRemoveFromCart = (productId) => {
-    setCart(cart.filter((item) => item.id !== productId));
+    const updatedCart = cart.filter((item) => item.id !== productId);
+    setCart(updatedCart);
+    setSnackbarMessage("Producto eliminado del carrito.");
+    setOpenSnackbar(true);
   };
 
   const calculateTotalPrice = () => {
@@ -138,7 +148,23 @@ const Orders = () => {
         </Typography>
       )}
 
-     
+      {/* Snackbar para mostrar mensajes */}
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setOpenSnackbar(false)}
+      >
+        <Alert severity="success" sx={{ width: "100%" }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
+
+      {/* Footer */}
+      <Box sx={{ mt: 6, py: 4, bgcolor: "#2e7d32", color: "white", textAlign: "center" }}>
+        <Typography variant="body2">
+          © 2024 Frescura Tica. Todos los derechos reservados.
+        </Typography>
+      </Box>
     </Container>
   );
 };

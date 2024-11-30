@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
- 
+
 const defaultTheme = createTheme();
 
 function Copyright(props) {
@@ -20,7 +20,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="/">
-        Your Website
+        Tu Sitio Web
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -37,7 +37,7 @@ export default function SignIn() {
       password: data.get('password'),
     });
   };
- 
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -54,7 +54,7 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Iniciar sesión
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -62,7 +62,7 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Correo Electrónico"
               name="email"
               autoComplete="email"
               autoFocus
@@ -72,14 +72,14 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Contraseña"
               type="password"
               id="password"
               autoComplete="current-password"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Recuérdame"
             />
             <Button
               type="submit"
@@ -87,25 +87,31 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Iniciar sesión
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  ¿Olvidaste la contraseña?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/singup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/singUp" variant="body2">
+                  ¿No tienes una cuenta? Regístrate
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* Footer */}
+      <Box sx={{ mt: 6, py: 4, bgcolor: "#2e7d32", color: "white", textAlign: "center" }}>
+  
+        
+  <Typography variant="body2">
+    © 2024 Frescura Tica. Todos los derechos reservados.
+  </Typography>
+</Box>
       </Container>
     </ThemeProvider>
   );
 }
- 

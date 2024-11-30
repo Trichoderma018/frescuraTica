@@ -89,6 +89,7 @@ const Payment = () => {
                 onChange={(e) => setCardNumber(e.target.value)}
                 fullWidth
                 required
+                style={{ marginBottom: '16px' }}  // Añadido margen
                 InputProps={{
                   startAdornment: <InputAdornment position="start">🔒</InputAdornment>,
                 }}
@@ -100,6 +101,7 @@ const Payment = () => {
                 onChange={(e) => setCardHolder(e.target.value)}
                 fullWidth
                 required
+                style={{ marginBottom: '16px' }}  // Añadido margen
                 InputProps={{
                   startAdornment: <InputAdornment position="start">👤</InputAdornment>,
                 }}
@@ -113,6 +115,7 @@ const Payment = () => {
                     onChange={(e) => setExpiryDate(e.target.value)}
                     fullWidth
                     required
+                    style={{ marginBottom: '16px' }}  // Añadido margen
                     InputProps={{
                       startAdornment: <InputAdornment position="start">📅</InputAdornment>,
                     }}
@@ -126,6 +129,7 @@ const Payment = () => {
                     onChange={(e) => setCvv(e.target.value)}
                     fullWidth
                     required
+                    style={{ marginBottom: '16px' }}  // Añadido margen
                     InputProps={{
                       startAdornment: <InputAdornment position="start">🔒</InputAdornment>,
                     }}
@@ -142,7 +146,7 @@ const Payment = () => {
               <Typography variant="body1">
                 Puedes realizar tu pago en efectivo en cualquiera de nuestras sucursales o solicitarlo por Exprés (con costo adicional).
               </Typography>
-              <Button variant="contained" color="secondary" onClick={generateCashCode} fullWidth>
+              <Button variant="contained" color="secondary" onClick={generateCashCode} fullWidth style={{ marginBottom: '16px' }}>
                 Generar Código de Pago en Efectivo
               </Button>
               {cashCode && (
@@ -173,6 +177,7 @@ const Payment = () => {
                 type="file" 
                 accept="image/*" 
                 onChange={(e) => setSinpeReceipt(e.target.files[0])}
+                style={{ marginBottom: '16px' }}  // Añadido margen
               />
             </Grid>
 
@@ -185,6 +190,7 @@ const Payment = () => {
                 onChange={(e) => setAmount(e.target.value)}
                 fullWidth
                 disabled
+                style={{ marginBottom: '16px' }}  // Añadido margen
                 InputProps={{
                   startAdornment: <InputAdornment position="start">💵</InputAdornment>,
                 }}
@@ -213,12 +219,11 @@ const Payment = () => {
       </Snackbar>
 
       {/* Mensaje de pie de página o información adicional */}
-      <footer style={{ marginTop: '40px', textAlign: 'center' }}>
-        <Divider style={{ margin: '20px 0' }} />
-        <Typography variant="body2">
-          &copy; {new Date().getFullYear()} Frescura Tica. Todos los derechos reservados.
+      <Box sx={{ mt: 2, textAlign: 'center' }}>
+        <Typography variant="body2" color="textSecondary">
+          * Todos los pagos son procesados de forma segura.
         </Typography>
-      </footer>
+      </Box>
     </Container>
   );
 };

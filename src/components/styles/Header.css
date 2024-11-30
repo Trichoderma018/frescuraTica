@@ -1,9 +1,57 @@
+/* Fondo cielo con nubes */
 .header_top {
     padding: 15px 0px;
-    background: #8A9A5B;
+    background: linear-gradient(to bottom, #87CEEB, #B0E0E6); /* Tonos de azul cielo */
     color: #fff;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Estilo para las nubes */
+.header_top::before, 
+.header_top::after {
+    content: '';
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: float 20s infinite ease-in-out;
+}
+
+/* Primera nube */
+.header_top::before {
+    width: 120px;
+    height: 60px;
+    top: 20px;
+    left: -50px;
+    box-shadow: 40px 20px 0 0 #ffffff;
+    animation-delay: 0s;
+}
+
+/* Segunda nube */
+.header_top::after {
+    width: 160px;
+    height: 80px;
+    top: 50px;
+    right: -80px;
+    box-shadow: 50px 30px 0 0 #ffffff;
+    animation-delay: 5s;
+}
+
+/* Animación para las nubes */
+@keyframes float {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(30px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Resto de estilos del header */
 .logo h1 a span {
     font-size: 2.0rem;
 }
@@ -11,7 +59,6 @@
 .logo h1 a i {
     font-size: 2.2rem;
     color: #fff;
-
 }
 
 .logo h1 a {
@@ -68,29 +115,8 @@
     color: #f9a826;
 }
 
-/* ===== Heder Middle Section ===== */
-.header_middle {
-    padding: 40px 0px;
-}
-
-.header_location span i {
-    font-size: 2.2rem;
-    color: #8A9A5B;
-}
-
-.header_location-content h4 {
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: #8A9A5B;
-}
-
-.header_location-content h6 {
-    font-weight: 500;
-}
-
 .header_btn {
     background: #8A9A5B !important;
-
     padding: 10px 20px;
     border: none;
     outline: none;
@@ -109,63 +135,4 @@
 
 .header_btn a:hover {
     color: #8A9A5B;
-}
-
-/* =========== main navbar styles ========= */
-.main_navbar {
-    padding: 15px 0px;
-    background: #8A9A5B;
-}
-
-.mobile_menu i {
-    color: #fff;
-    font-size: 1.3rem;
-    cursor: pointer;
-}
-
-.mobile_menu {
-    display: none;
-}
-
-.menu {
-    display: flex;
-    align-items: center;
-    column-gap: 3.7rem;
-}
-
-
-.nav_item {
-    color: #fff;
-    text-decoration: none;
-}
-
-.nav_item:hover {
-
-    color: #f9a826;
-}
-
-.nav_active{
-    color: #f9a826;
-}
-
-.search_box {
-    border: 1px solid #977c7c2f;
-    display: flex;
-    align-items: center;
-    padding: 7px 12px;
-    border-radius: 50px;
-    background: #192b48;
-
-}
-
-.search_box input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #fff;
-    cursor: pointer;
-}
-
-.search_box input::placeholder {
-    font-size: .8rem;
 }
