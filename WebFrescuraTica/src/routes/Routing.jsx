@@ -13,7 +13,7 @@ function Routing() {
       <Router>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/inventori" element={<Inventory/>}/>
+          <Route path="/inventory" element={<Inventory/>}/>
         </Routes>
       </Router>
     </div>
