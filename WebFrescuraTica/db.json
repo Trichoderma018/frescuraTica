@@ -1,20 +1,48 @@
 {
   "inventario": [
     {
-      "id": "e487",
-      "nombre": "ffdfgr"
+      "id": "c182",
+      "codigo": "102",
+      "nombre": "Culantro",
+      "cantidad": 50,
+      "precio": 300,
+      "url": ""
     },
     {
-      "id": "b902",
-      "nombre": "fgfgherfhf"
+      "id": "ea44",
+      "nombre": "papaya",
+      "completed": false
     },
     {
-      "id": "3cc7",
-      "nombre": "asdgerh"
+      "id": "2bbe",
+      "nombre": "Yuca",
+      "completed": false
     },
     {
-      "id": "3dc7",
-      "nombre": "CuCulantro"
+      "id": "34ae",
+      "nombre": "Melon",
+      "completed": false
+    },
+    {
+      "id": "97de",
+      "nombre": "Zanahoria",
+      "completed": false
+    },
+    {
+      "id": "20d2",
+      "codigo": "101",
+      "nombre": "Lechuga americana",
+      "cantidad": 30,
+      "precio": 350,
+      "url": ""
+    },
+    {
+      "id": "6ee3",
+      "codigo": "103",
+      "nombre": "Rabano",
+      "cantidad": 10,
+      "precio": 350,
+      "url": "C:\\Users\\juanp\\fwd\\vscode\\React\\frescuraTica\\WebFrescuraTica\\src\\assets\\img\\rabano.jpg"
     }
   ]
 }
