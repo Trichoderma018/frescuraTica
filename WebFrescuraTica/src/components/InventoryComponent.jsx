@@ -22,26 +22,42 @@ function InventoryComponent() {
         .then(data => setInventario(data))
         .catch(error => console.error('Error al obtener el inventario:', error));
     };
+    
     function buscarProducto() {
-        if (!busqueda.trim()) {
-            cargarInventario(); // Si el campo está vacío, carga todo
+        const codigoBuscado = busqueda.trim(); // Convertir a minúsculas para evitar problemas de mayúsculas
+
+        if (!codigoBuscado) {
+            cargarInventario(); // Si está vacío, recarga el inventario completo
             return;
         }
-    
-        llamados.GetDataById("inventario", busqueda)
-            .then(producto => {
-                if (producto && Object.keys(producto).length > 0) {
-                    setInventario([producto]); // Muestra solo el producto encontrado
+
+        llamados.GetData("inventario")
+            .then(data => {
+                const productoEncontrado = data.find(producto => 
+                    producto.codigo === codigoBuscado
+                );
+
+                if (productoEncontrado) {
+                    setInventario([productoEncontrado]); // Mostrar solo el producto encontrado
                 } else {
-                    setInventario([]); // Limpia la tabla si no hay resultados
-                    alert("Producto no encontrado");
+                    alert("Producto no encontrado.");
+                    cargarInventario(); // Si no se encuentra, recarga el inventario completo
                 }
             })
             .catch(error => {
                 console.error("Error al buscar producto:", error);
-                alert("Error al buscar el producto. Verifica el ID.");
-            });
+                alert("Error al buscar el producto.");
+                cargarInventario(); // Asegurar que se recargue el inventario si hay un error
+            }
+        );
     }
+    // Si la búsqueda se borra, recargar el inventario automáticamente
+    useEffect(() => {
+        if (!busqueda.trim()) {
+            cargarInventario();
+        }
+    }, [busqueda]);
+
     function agregarProducto() {
         if (!codigo.trim() || !nombre.trim() || !cantidad || !precio.trim()) { //Todos menos la URL
             alert("Todos los campos son obligatorios.");
@@ -127,7 +143,7 @@ function InventoryComponent() {
                     value={busqueda}
                     onChange={(e) => setBusqueda(e.target.value)}
                 />
-                <button onClick={buscarProducto}>Buscar</button>
+                <button className="btn-search" onClick={buscarProducto}>Buscar</button>
             </div>
             <table className="table">
                 <thead>

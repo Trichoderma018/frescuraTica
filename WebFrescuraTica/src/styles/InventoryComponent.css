@@ -26,14 +26,18 @@ h2 {
 
 /* Input de búsqueda */
 .search-bar {
-    width: 90%;
+    width: 20%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 20px;
     color: black;
 }
-
+/*Boton de la bara de busqueda*/
+.btn-search {
+    background-color:#0059ff;
+    color: white;
+}
 /* Tabla de inventario */
 .table {
     width: 100%;
