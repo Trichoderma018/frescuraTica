@@ -36,7 +36,7 @@ h2 {
 /*Boton de la bara de busqueda*/
 .btn-search {
     background-color:#0059ff;
-    color: white;
+    /*color: white; */
 }
 /* Tabla de inventario */
 .table {
@@ -120,7 +120,7 @@ h2 {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
-    color: white;
+    /*color: white;*/
     border: none;
     border-radius: 5px;
     font-weight: bold;

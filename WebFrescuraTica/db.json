@@ -44,5 +44,23 @@
       "precio": 350,
       "url": "C:\\Users\\juanp\\fwd\\vscode\\React\\frescuraTica\\WebFrescuraTica\\src\\assets\\img\\rabano.jpg"
     }
+  ],
+  "users": [
+    {
+      "id": "ea3e",
+      "nombre": "sdfhsdfJuan",
+      "apellido": "Quesada Ramírez",
+      "correo": "juan@gmail.com",
+      "contrasena": "asf1234",
+      "promociones": true
+    },
+    {
+      "id": "36f7",
+      "nombre": "Pablo",
+      "apellido": "Jimenez",
+      "correo": "pjimenez@gmail.com",
+      "contrasena": "45678",
+      "promociones": false
+    }
   ]
 }

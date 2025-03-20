@@ -138,7 +138,7 @@ function InventoryComponent() {
             <div className="search-container">
                 <input
                     type="text"
-                    placeholder="Buscar por ID"
+                    placeholder="Buscar por Código"
                     className="search-bar"
                     value={busqueda}
                     onChange={(e) => setBusqueda(e.target.value)}
