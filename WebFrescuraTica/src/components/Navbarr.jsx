@@ -13,15 +13,15 @@ function Navbarr() {
 
         <div className="nav-links">
           <a href="/">INICIO</a>
-          <a href="/nosotros">NOSOTROS</a>
-          <a href="/pedidos">PEDIDOS</a>
-          <a href="/pagos">PAGOS</a>
-          <a href="/inventario">INVENTARIO</a>
+          <a href="/about">NOSOTROS</a>
+          <a href="/orders">PEDIDOS</a>
+          <a href="/payment">PAGOS</a>
+          <a href="/inventory">INVENTARIO</a>
         </div>
 
         <div className="right-section">
           <span className="help-text">Ayuda: +506 8888-8888</span>
-          <button className="login-button" onClick={() => navigate("/register")}>
+          <button className="login-button" onClick={() => navigate("/login")}>
             👤 INICIAR SESIÓN
           </button>
         </div>
@@ -31,10 +31,10 @@ function Navbarr() {
         <select className="search-dropdown">
           <option>Páginas...</option>
           <option value="/">Inicio</option>
-          <option value="/nosotros">Nosotros</option>
-          <option value="/pedidos">Pedidos</option>
-          <option value="/pagos">Pagos</option>
-          <option value="/inventario">Inventario</option>
+          <option value="/about">Nosotros</option>
+          <option value="/orders">Pedidos</option>
+          <option value="/payment">Pagos</option>
+          <option value="/inventory">Inventario</option>
         </select>
         <button className="search-button">🔍 Buscar</button>
       </div>

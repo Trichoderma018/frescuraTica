@@ -6,6 +6,7 @@ import Home from '../pages/Home';
 import Inventory from '../pages/Inventory';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import Orders from '../pages/Orders';
 
 function Routing() {
 
@@ -18,6 +19,7 @@ function Routing() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/inventory" element={<Inventory/>}/>
+          <Route path="/orders" element={<Orders/>}/>
         </Routes>
       </Router>
     </div>
