@@ -1,0 +1,129 @@
+/* Barra superior verde */
+.footer-barra {
+    background-color: #2e7d32;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1rem;
+    font-weight: normal;
+  }
+  
+  /* Contenedor principal del footer */
+  .footer-container {
+    background-color: #8B4513;
+    color: white;
+    padding: 40px 0;
+  }
+  
+  /* Contenido del footer en flexbox */
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  /* Sección del footer */
+  .footer-section {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  /* Logo y título */
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .icon-logo {
+    color: #FFD700;
+    font-size: 2rem;
+  }
+  
+  .footer-title {
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Texto de descripción */
+  .footer-text {
+    line-height: 1.8;
+  }
+  
+  /* Subtítulos */
+  .footer-subtitle {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Elementos de contacto */
+  .footer-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  
+  .icon-contact {
+    font-size: 1.2rem;
+    color: #ff002f;
+  }
+
+  .icon-contact-phone {
+    font-size: 1.2rem;
+    color: greenyellow;
+  }
+
+  .icon-contact-email {
+    font-size: 1.2rem;
+    color: rgb(43, 43, 235);
+  }
+  
+  /* Redes sociales */
+  .footer-social {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .social-button {
+    color: white;
+  }
+  
+  .social-button-facebook {
+    color: #3b5998;
+  }
+  
+  .social-button-instagram {
+    color: #E4405F;
+  }
+  
+  .social-button-twitter {
+    background-color: #00acee;
+  }
+  
+  .social-button:hover {
+    background-color: #229e28;
+  }
+  
+  /* Línea divisoria */
+  .footer-divider {
+    background-color: white;
+    margin: 40px 0;
+  }
+  
+  /* Copyright */
+  .footer-copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  }
+  

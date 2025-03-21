@@ -15,6 +15,7 @@ body {
     width: 100%;
     max-width: 800px;
     margin-top: 20px;
+    justify-self: center;
 }
 .titulo-container {
     color: #1e3e70;
@@ -32,11 +33,13 @@ h2 {
     border-radius: 5px;
     margin-bottom: 20px;
     color: black;
+    background-color: white;
 }
 /*Boton de la bara de busqueda*/
 .btn-search {
     background-color:#0059ff;
-    /*color: white; */
+    color: white;
+    height: 10%;
 }
 /* Tabla de inventario */
 .table {
@@ -104,6 +107,7 @@ h2 {
     border: 1px solid #ccc;
     border-radius: 5px;
     color: black;
+    background-color: white;
 }
 
 .add-product .input-group {
@@ -120,7 +124,7 @@ h2 {
     width: 100%;
     padding: 10px;
     background-color: #007bff;
-    /*color: white;*/
+    color: white;
     border: none;
     border-radius: 5px;
     font-weight: bold;
