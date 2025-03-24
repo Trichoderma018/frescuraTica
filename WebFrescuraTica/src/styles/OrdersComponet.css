@@ -89,6 +89,7 @@
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
+    color: #1e3e70;
   }
   
   .cart-list {
@@ -107,6 +108,7 @@
   
   .cart-item-text {
     font-size: 1rem;
+    color: black;
   }
   
   .remove-cart-btn {
@@ -118,6 +120,7 @@
     font-weight: bold;
     text-align: right;
     margin-top: 10px;
+    color: black;
   }
   
   .confirm-order-btn {
@@ -135,6 +138,7 @@
   
   .confirm-order-btn:hover {
     background-color: #0056b3;
+    color: white;
   }
   
   .empty-cart-message {
