@@ -118,7 +118,7 @@ const PaymentComponent = () => {
                     value={cvv}
                     onChange={(e) => setCvv(e.target.value)}
                     placeholder="CVV"
-                    className="payment-input"
+                    className="payment-input-cvv"
                   />
                 </div>
               </div>

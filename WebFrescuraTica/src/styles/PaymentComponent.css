@@ -18,7 +18,7 @@
     font-weight: 600;
     text-align: center;
     margin-bottom: 15px;
-    color: #333;
+    color: #1e3e70;
   }
   
   .payment-message {
@@ -33,7 +33,7 @@
   
   .payment-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-bottom: 30px;
   }
@@ -47,7 +47,7 @@
     font-size: 20px;
     font-weight: 500;
     margin-bottom: 15px;
-    color: #444;
+    color: #1e3e70;
   }
   
   .payment-text {
@@ -73,12 +73,25 @@
   }
   
   .payment-input {
-    width: 100%;
+    width: 80%;
     padding: 12px 12px 12px 40px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
     transition: border-color 0.3s;
+    background-color: white;
+    color: black;
+  }
+
+  .payment-input-cvv {
+    width: 58%;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    background-color: white;
+    color: black;
   }
   
   .payment-input:focus {
@@ -116,21 +129,21 @@
   }
   
   .payment-button.primary {
-    background-color: #3f51b5;
+    background-color: #2377d8;
     color: white;
   }
   
   .payment-button.primary:hover {
-    background-color: #303f9f;
+    background-color: #1565c0;
   }
   
   .payment-button.secondary {
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #a032cf;
+    color: white;
   }
   
   .payment-button.secondary:hover {
-    background-color: #e0e0e0;
+    background-color: #7b1fa2;
   }
   
   .payment-button:disabled {

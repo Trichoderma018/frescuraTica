@@ -71,7 +71,6 @@ const OrdersComponet = () => {
       },
     });
   };
-
   return (
     <Container className="orders-container">
       <h1 className="orders-title">

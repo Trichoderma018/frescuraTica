@@ -42,7 +42,15 @@
       "nombre": "Rabano",
       "cantidad": 10,
       "precio": 350,
-      "url": "C:\\Users\\juanp\\fwd\\vscode\\React\\frescuraTica\\WebFrescuraTica\\src\\assets\\img\\rabano.jpg"
+      "url": " ../assets/img/aguacate.jpg"
+    },
+    {
+      "id": "fa81",
+      "codigo": "104",
+      "nombre": "Aguacate",
+      "cantidad": 100,
+      "precio": 500,
+      "url": " ../assets/img/aguacate.jpg"
     }
   ],
   "users": [
