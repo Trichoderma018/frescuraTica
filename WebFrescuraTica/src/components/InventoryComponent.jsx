@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import llamados from "../services/llamados"
 import "../styles/InventoryComponent.css"
 
@@ -8,11 +8,14 @@ function InventoryComponent() {
     const [nombre, setNombre] = useState("");
     const [cantidad, setCantidad] = useState("");
     const [precio, setPrecio] = useState("");
-    const [url, setUrl] = useState("");
+    const [imagenUrl, setImagenUrl] = useState(""); // Cambiado de url a imagenUrl
+    const [imagenPreview, setImagenPreview] = useState(""); // Para mostrar vista previa
     const [editandoId, setEditandoId] = useState(null);
-    const [busqueda, setBusqueda] = useState(""); // Estado para la barra de búsqueda
+    const [busqueda, setBusqueda] = useState("");
+    const [uploading, setUploading] = useState(false); // Estado para controlar la carga
+    const fileInputRef = useRef(null); // Referencia al input de tipo file
 
-    //Carga inventario con useEfecct automaticamente
+    // Carga inventario con useEffect automáticamente
     useEffect(() => {
         cargarInventario();
     }, []);
@@ -24,10 +27,10 @@ function InventoryComponent() {
     };
     
     function buscarProducto() {
-        const codigoBuscado = busqueda.trim(); // Convertir a minúsculas para evitar problemas de mayúsculas
+        const codigoBuscado = busqueda.trim();
 
         if (!codigoBuscado) {
-            cargarInventario(); // Si está vacío, recarga el inventario completo
+            cargarInventario();
             return;
         }
 
@@ -38,19 +41,20 @@ function InventoryComponent() {
                 );
 
                 if (productoEncontrado) {
-                    setInventario([productoEncontrado]); // Mostrar solo el producto encontrado
+                    setInventario([productoEncontrado]);
                 } else {
                     alert("Producto no encontrado.");
-                    cargarInventario(); // Si no se encuentra, recarga el inventario completo
+                    cargarInventario();
                 }
             })
             .catch(error => {
                 console.error("Error al buscar producto:", error);
                 alert("Error al buscar el producto.");
-                cargarInventario(); // Asegurar que se recargue el inventario si hay un error
+                cargarInventario();
             }
         );
     }
+
     // Si la búsqueda se borra, recargar el inventario automáticamente
     useEffect(() => {
         if (!busqueda.trim()) {
@@ -58,10 +62,64 @@ function InventoryComponent() {
         }
     }, [busqueda]);
 
+    // Función para manejar el cambio de archivo de imagen
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        // Crear una URL temporal para la vista previa
+        const previewUrl = URL.createObjectURL(file);
+        setImagenPreview(previewUrl);
+
+        // Subir la imagen al servidor
+        
+        
+        uploadImage(file);
+        
+    };
+
+    // Función para subir la imagen al servidor
+    const uploadImage = async (file) => {
+        setUploading(true);
+        
+        try {
+            const formData = new FormData();
+            console.log(file);
+            formData.append('imagen', file);
+            
+            const response = await fetch('http://localhost:3000/inventario', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                setImagenUrl(result.imageUrl);
+                alert("Imagen subida correctamente");
+            } else {
+                alert("Error al subir la imagen: " + result.error);
+                setImagenPreview("");
+            }
+        } catch (error) {
+            console.error("Error al subir la imagen:", error);
+            alert("Error de conexión al subir la imagen");
+            setImagenPreview("");
+        } finally {
+            setUploading(false);
+        }
+    };
+
     function agregarProducto() {
-        if (!codigo.trim() || !nombre.trim() || !cantidad || !precio.trim()) { //Todos menos la URL
-            alert("Todos los campos son obligatorios.");
+        if (!codigo.trim() || !nombre.trim() || !cantidad || !precio.trim()) {
+            alert("Todos los campos son obligatorios excepto la imagen.");
             return;
+        }
+
+        // Si no hay imagen, avisar pero permitir continuar
+        if (!imagenUrl) {
+            const confirmar = window.confirm("No has subido una imagen. ¿Deseas continuar sin imagen?");
+            if (!confirmar) return;
         }
 
         const nuevoProducto = {
@@ -69,42 +127,76 @@ function InventoryComponent() {
             nombre: nombre.trim(),
             cantidad: parseInt(cantidad, 10),
             precio: parseFloat(precio),
-            url: url
+            url: imagenUrl // Ahora guardamos la URL de la imagen subida
         };
 
         llamados.PostData(nuevoProducto, "inventario")
             .then(() => {
-                cargarInventario(); // Volver a cargar el inventario
-                limpiarCampos(""); // Limpiar el campo de entrada
+                cargarInventario();
+                limpiarCampos();
             })
             .catch(error => console.error("Error al agregar producto:", error)
         );
     }
+
     function limpiarCampos () {
         setCodigo("");
         setNombre("");
         setCantidad("");
         setPrecio("");
-        setUrl("");
+        setImagenUrl("");
+        setImagenPreview("");
         setEditandoId(null);
+        
+        // Limpiar el input de archivo
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
     }
+
     function eliminarProducto(productoId) {
+        // Buscar el producto para obtener su URL de imagen
+        const producto = inventario.find(p => p.id === productoId);
+        
         llamados.DeleteData('inventario', productoId)
-            .then(() => cargarInventario())
+            .then(() => {
+                // Si el producto tenía una imagen y la URL comienza con /assets/img/
+                // podríamos eliminarla del servidor aquí
+                if (producto && producto.url && producto.url.startsWith('/assets/img/')) {
+                    // Extraer el nombre del archivo de la URL
+                    const filename = producto.url.split('/').pop();
+                    
+                    // Llamar a la API para eliminar la imagen
+                    fetch(`http://localhost:3000/api/delete-image/${filename}`, {
+                        method: 'DELETE'
+                    }).catch(error => console.error("Error al eliminar la imagen:", error));
+                }
+                
+                cargarInventario();
+            })
             .catch(error => console.error("Error al eliminar producto:", error));
     }
+
     function iniciarEdicion(producto) {
         setEditandoId(producto.id);
         setCodigo(producto.codigo);
         setNombre(producto.nombre);
         setCantidad(producto.cantidad.toString());
         setPrecio(producto.precio.toString());
-        setUrl(producto.url);
+        setImagenUrl(producto.url);
+        
+        // Si hay una URL de imagen, mostrarla como vista previa
+        if (producto.url) {
+            setImagenPreview(producto.url.startsWith('http') ? 
+                producto.url : `http://localhost:3000${producto.url}`);
+        } else {
+            setImagenPreview("");
+        }
     }
 
     function actualizarProducto() {
         if (!codigo.trim() || !nombre.trim() || !cantidad.trim() || !precio.trim()) {
-            alert("Todos los campos son obligatorios.");
+            alert("Todos los campos son obligatorios excepto la imagen.");
             return;
         }
     
@@ -114,19 +206,19 @@ function InventoryComponent() {
         }
     
         const productoActualizado = {
-            id: editandoId, // Asegurar que se envía el ID
+            id: editandoId,
             codigo: codigo.trim(),
             nombre: nombre.trim(),
             cantidad: parseInt(cantidad, 10),
             precio: parseFloat(precio),
-            url: url.trim()
+            url: imagenUrl // Usamos la URL de la imagen subida
         };
     
         llamados.UpdateData(productoActualizado, "inventario", editandoId)
             .then(() => {
                 cargarInventario();
                 limpiarCampos();
-                setEditandoId(null); // Salir del modo edición
+                setEditandoId(null);
             })
             .catch(error => console.error("Error al actualizar producto:", error)
         );
@@ -152,6 +244,7 @@ function InventoryComponent() {
                         <th>Nombre</th>
                         <th>Cantidad</th>
                         <th>Precio</th>
+                        <th>Imagen</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -164,6 +257,20 @@ function InventoryComponent() {
                                 <td>{producto.cantidad}</td>
                                 <td>₡{producto.precio}</td>
                                 <td>
+                                    {producto.url ? (
+                                        <img 
+                                            src={producto.url.startsWith('http') ? 
+                                                producto.url : `http://localhost:3000${producto.url}`} 
+                                            alt={producto.nombre}
+                                            className="product-thumbnail"
+                                            width="50"
+                                            height="50"
+                                        />
+                                    ) : (
+                                        <span className="no-image">Sin imagen</span>
+                                    )}
+                                </td>
+                                <td>
                                     <button className="btn-edit" onClick={() => iniciarEdicion(producto)}>Editar</button>
                                     <button className="btn-delete" onClick={() => eliminarProducto(producto.id)}>Eliminar</button> 
                                 </td>
@@ -171,7 +278,7 @@ function InventoryComponent() {
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="5" className="empty-message">No hay productos disponibles en el inventario.</td>
+                            <td colSpan="6" className="empty-message">No hay productos disponibles en el inventario.</td>
                         </tr>
                     )}
                 </tbody>
@@ -205,16 +312,52 @@ function InventoryComponent() {
                         placeholder="Precio"
                     />
                 </div>
-                <input
-                    type="text"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                    placeholder="URL de la imagen"
-                />
+                
+                {/* Sección de carga de imagen */}
+                <div className="image-upload-section">
+                    <label htmlFor="product-image" className="file-input-label">
+                        Seleccionar imagen del producto
+                    </label>
+                    <input
+                        type="file"
+                        id="product-image"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        ref={fileInputRef}
+                        className="file-input"
+                    />
+                    
+                    {/* Vista previa de la imagen */}
+                    {imagenPreview && (
+                        <div className="image-preview">
+                            <img 
+                                src={imagenPreview} 
+                                alt="Vista previa" 
+                                className="preview-img" 
+                            />
+                        </div>
+                    )}
+                    
+                    {/* Mostrar estado de carga */}
+                    {uploading && <p className="uploading-message">Subiendo imagen...</p>}
+                </div>
+
                 {editandoId ? (
-                    <button onClick={actualizarProducto}>Actualizar Producto</button>
+                    <button 
+                        onClick={actualizarProducto} 
+                        disabled={uploading}
+                        className={uploading ? "button-disabled" : ""}
+                    >
+                        Actualizar Producto
+                    </button>
                 ) : (
-                    <button onClick={agregarProducto}>Agregar Producto</button>
+                    <button 
+                        onClick={agregarProducto} 
+                        disabled={uploading}
+                        className={uploading ? "button-disabled" : ""}
+                    >
+                        Agregar Producto
+                    </button>
                 )}
             </div>
         </div>

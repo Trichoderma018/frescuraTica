@@ -42,7 +42,7 @@
       "nombre": "Rabano",
       "cantidad": 10,
       "precio": 350,
-      "url": " ../assets/img/aguacate.jpg"
+      "url": ""
     },
     {
       "id": "fa81",
@@ -50,7 +50,7 @@
       "nombre": "Aguacate",
       "cantidad": 100,
       "precio": 500,
-      "url": " ../assets/img/aguacate.jpg"
+      "url": ""
     }
   ],
   "users": [
