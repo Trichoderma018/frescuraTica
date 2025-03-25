@@ -1,0 +1,101 @@
+/* Sección de Bienvenida */
+.welcome-section {
+    text-align: center;
+  }
+  
+  .welcome-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: bold;
+    margin-top: 2rem;
+  }
+  
+  .welcome-subtitle {
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+    color: #4caf50;
+  }
+  
+  .shop-button {
+    margin-top: 1.5rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    font-size: 1rem !important;
+    border-radius: 25px !important;
+  }
+  
+  /* Sección de Productos Destacados */
+  .featured-products-section {
+    margin-top: 3rem;
+  }
+  
+  .featured-products-paper {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .section-subtitle {
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 2rem;
+  }
+  
+  .product-card {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
+    border-radius: 0.5rem !important;
+    transition: transform 0.3s ease !important;
+  }
+  
+  .product-card:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23) !important;
+  }
+  
+  .product-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-description {
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Sección Conócenos */
+  .about-us-section {
+    margin-top: 3rem;
+    padding: 2rem 1.5rem;
+    background-color: #e8f5e9;
+    text-align: center;
+  }
+  
+  .about-us-description {
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .about-us-card {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23) !important;
+  }
+  
+  .about-us-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .about-us-card-description {
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.6);
+  }

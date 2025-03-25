@@ -8,6 +8,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Orders from '../pages/Orders';
 import Payment from '../pages/Payment';
+import About from '../pages/About';
 
 function Routing() {
 
@@ -22,6 +23,7 @@ function Routing() {
           <Route path="/inventory" element={<Inventory/>}/>
           <Route path="/orders" element={<Orders/>}/>
           <Route path="/payment" element={<Payment/>}/>
+          <Route path="/about" element={<About/>}/>
         </Routes>
       </Router>
     </div>
