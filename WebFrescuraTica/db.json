@@ -10,8 +10,11 @@
     },
     {
       "id": "ea44",
+      "codigo": "105",
       "nombre": "papaya",
-      "completed": false
+      "cantidad": 300,
+      "precio": 1000,
+      "url": ""
     },
     {
       "id": "2bbe",

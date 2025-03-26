@@ -52,7 +52,7 @@ const upload = multer({
 // Función para configurar rutas de manejo de imágenes en Express
 const configureImageRoutes = (app) => {
     // Ruta para subir imágenes
-    app.post('/api/upload-image', upload.single('imagen'), (req, res) => {
+    app.post('/inventario', upload.single('imagen'), (req, res) => {
         try {
             if (!req.file) {
                 return res.status(400).json({ error: 'No se ha subido ninguna imagen' });
@@ -77,7 +77,7 @@ const configureImageRoutes = (app) => {
     });
 
     // Ruta para eliminar imágenes (opcional, por si necesitas esta funcionalidad)
-    app.delete('/api/delete-image/:filename', (req, res) => {
+    app.delete('/inventario/:filename', (req, res) => {
         try {
             const filename = req.params.filename;
             const filePath = path.join(imgPath, filename);

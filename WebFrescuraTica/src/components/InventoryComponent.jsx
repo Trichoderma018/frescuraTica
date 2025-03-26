@@ -167,7 +167,7 @@ function InventoryComponent() {
                     const filename = producto.url.split('/').pop();
                     
                     // Llamar a la API para eliminar la imagen
-                    fetch(`http://localhost:3000/api/delete-image/${filename}`, {
+                    fetch(`http://localhost:3000/inventario/${filename}`, {
                         method: 'DELETE'
                     }).catch(error => console.error("Error al eliminar la imagen:", error));
                 }
@@ -260,7 +260,7 @@ function InventoryComponent() {
                                     {producto.url ? (
                                         <img 
                                             src={producto.url.startsWith('http') ? 
-                                                producto.url : `http://localhost:3000${producto.url}`} 
+                                                producto.url : `http://localhost:3001${producto.url}`} 
                                             alt={producto.nombre}
                                             className="product-thumbnail"
                                             width="50"
