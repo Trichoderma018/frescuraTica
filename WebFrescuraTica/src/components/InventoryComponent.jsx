@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import llamados from "../services/llamados"
 import "../styles/InventoryComponent.css"
+import AWS from 'aws-sdk';
 
 function InventoryComponent() {
     const [inventario, setInventario] = useState([]);
@@ -8,12 +9,29 @@ function InventoryComponent() {
     const [nombre, setNombre] = useState("");
     const [cantidad, setCantidad] = useState("");
     const [precio, setPrecio] = useState("");
-    const [imagenUrl, setImagenUrl] = useState(""); // Cambiado de url a imagenUrl
     const [imagenPreview, setImagenPreview] = useState(""); // Para mostrar vista previa
     const [editandoId, setEditandoId] = useState(null);
     const [busqueda, setBusqueda] = useState("");
     const [uploading, setUploading] = useState(false); // Estado para controlar la carga
     const fileInputRef = useRef(null); // Referencia al input de tipo file
+    const [prueba,setPrueba] = useState(null)
+    const S3_BUCKET = 'inventoryimages99';
+    const REGION = 'us-east-2';
+    const s3 = new AWS.S3({
+        accessKeyId: 'AKIA55HIDFXCEWOLPREJ',
+        secretAccessKey: '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',
+        region: REGION,
+    });
+    const uploadImageToS3 = async (file) => {
+        const params = {
+          Bucket: S3_BUCKET,
+          Key: file.name,
+          Body: file,
+          ContentType: file.type,
+          // ACL: 'public-read',
+        };
+        return s3.upload(params).promise();
+    };
 
     // Carga inventario con useEffect automáticamente
     useEffect(() => {
@@ -62,52 +80,23 @@ function InventoryComponent() {
         }
     }, [busqueda]);
 
+    let imagenUrl='';
     // Función para manejar el cambio de archivo de imagen
-    const handleImageChange = (event) => {
+    const handleImageChange = async (event) => {
         const file = event.target.files[0];
-        if (!file) return;
-
-        // Crear una URL temporal para la vista previa
-        const previewUrl = URL.createObjectURL(file);
-        setImagenPreview(previewUrl);
-
-        // Subir la imagen al servidor
-        
-        
-        uploadImage(file);
-        
-    };
-
-    // Función para subir la imagen al servidor
-    const uploadImage = async (file) => {
-        setUploading(true);
-        
-        try {
-            const formData = new FormData();
-            console.log(file);
-            formData.append('imagen', file);
-            
-            const response = await fetch('http://localhost:3000/inventario', {
-                method: 'POST',
-                body: formData,
-            });
-
-            const result = await response.json();
-
-            if (result.success) {
-                setImagenUrl(result.imageUrl);
-                alert("Imagen subida correctamente");
-            } else {
-                alert("Error al subir la imagen: " + result.error);
-                setImagenPreview("");
+        console.log(file);
+        if (file) {
+            try {
+              const result = await uploadImageToS3(file);
+              imagenUrl = result.Location;
+              console.log(imagenUrl);
+              setPrueba(imagenUrl)
+            } catch (error) {
+              console.error('Error al subir la imagen a S3:', error);
+              throw new Error('No se pudo subir la imagen a S3');
             }
-        } catch (error) {
-            console.error("Error al subir la imagen:", error);
-            alert("Error de conexión al subir la imagen");
-            setImagenPreview("");
-        } finally {
-            setUploading(false);
-        }
+          }
+        
     };
 
     function agregarProducto() {
@@ -117,7 +106,7 @@ function InventoryComponent() {
         }
 
         // Si no hay imagen, avisar pero permitir continuar
-        if (!imagenUrl) {
+        if (!prueba) {
             const confirmar = window.confirm("No has subido una imagen. ¿Deseas continuar sin imagen?");
             if (!confirmar) return;
         }
@@ -127,7 +116,7 @@ function InventoryComponent() {
             nombre: nombre.trim(),
             cantidad: parseInt(cantidad, 10),
             precio: parseFloat(precio),
-            url: imagenUrl // Ahora guardamos la URL de la imagen subida
+            url: prueba // Ahora guardamos la URL de la imagen subida
         };
 
         llamados.PostData(nuevoProducto, "inventario")
@@ -144,7 +133,6 @@ function InventoryComponent() {
         setNombre("");
         setCantidad("");
         setPrecio("");
-        setImagenUrl("");
         setImagenPreview("");
         setEditandoId(null);
         

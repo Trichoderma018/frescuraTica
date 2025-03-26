@@ -48,12 +48,20 @@
       "url": ""
     },
     {
-      "id": "fa81",
-      "codigo": "104",
-      "nombre": "Aguacate",
-      "cantidad": 100,
-      "precio": 500,
+      "id": "8e44",
+      "codigo": "106",
+      "nombre": "Sandia",
+      "cantidad": 50,
+      "precio": 1600,
       "url": ""
+    },
+    {
+      "id": "1a9a",
+      "codigo": "12345",
+      "nombre": "abcdefg",
+      "cantidad": 12,
+      "precio": 121,
+      "url": "https://inventoryimages99.s3.us-east-2.amazonaws.com/pexels-any-lane-5945640.jpg"
     }
   ],
   "users": [
