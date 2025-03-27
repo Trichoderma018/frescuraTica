@@ -1,5 +1,5 @@
 /* Sección de Bienvenida */
-.welcome-section {
+  .welcome-section {
     text-align: center;
   }
   
@@ -8,6 +8,7 @@
     line-height: 2.25rem;
     font-weight: bold;
     margin-top: 2rem;
+    color: #1e3e70;
   }
   
   .welcome-subtitle {
@@ -29,6 +30,10 @@
     border-radius: 25px !important;
   }
   
+  .shop-button:hover {
+    color: #2ef335;
+  }
+
   /* Sección de Productos Destacados */
   .featured-products-section {
     margin-top: 3rem;
@@ -43,6 +48,7 @@
   .section-title {
     font-size: 2rem;
     margin-bottom: 0.5rem;
+    color: #1e3e70;
   }
   
   .section-subtitle {
@@ -64,6 +70,7 @@
   .product-title {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
+    color: #1e3e70;
   }
   
   .product-description {
@@ -77,6 +84,7 @@
     padding: 2rem 1.5rem;
     background-color: #e8f5e9;
     text-align: center;
+    color: black;
   }
   
   .about-us-description {

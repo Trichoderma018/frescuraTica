@@ -17,7 +17,7 @@
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
-    color: #333;
+    color: #1e3e70;
   }
   
   .subtitle {
@@ -54,11 +54,11 @@
   }
   
   /* Colores específicos para cada tarjeta */
-  .vision-card {
+  #vision {
     background-color: #e8f5e9;
   }
   
-  .values-card {
+  #values {
     background-color: #f1f8e9;
   }
   
@@ -70,11 +70,14 @@
   
   .leaders-card {
     padding: 2rem;
-    background-color: #fff3e0;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
+  #leaders{
+    background-color: #fff3e0;
+  }
+
   /* Sección de agradecimiento */
   .thank-you-section {
     text-align: center;
@@ -83,9 +86,12 @@
   
   .thank-you-card {
     padding: 2rem;
-    background-color: #fce4ec;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #thank-you {
+    background-color: #fce4ec;
   }
   
   /* Títulos de tarjetas */
@@ -94,7 +100,7 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     font-weight: 600;
-    color: #333;
+    color: #1e3e70;
   }
   
   /* Texto de tarjetas */

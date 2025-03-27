@@ -11,7 +11,7 @@ const AboutComponent = () => {
   const navigate = useNavigate();
 
   const handleNavigateToHome = () => {
-    navigate("/home");
+    navigate("/");
   };
 
   const handleNavigateToOrders = () => {
@@ -29,7 +29,7 @@ const AboutComponent = () => {
 
       <div className="info-cards-container">
         <div className="info-card-item">
-          <Paper className="info-card vision-card">
+          <Paper className="info-card" id="vision">
             <AgricultureIcon fontSize="large" color="primary" />
             <h2 className="card-title">Nuestra Visión</h2>
             <p className="card-text">
@@ -40,7 +40,7 @@ const AboutComponent = () => {
         </div>
 
         <div className="info-card-item">
-          <Paper className="info-card values-card">
+          <Paper className="info-card" id="values">
             <StarIcon fontSize="large" color="secondary" />
             <h2 className="card-title">Nuestros Valores</h2>
             <div className="card-text">
@@ -54,7 +54,7 @@ const AboutComponent = () => {
 
       {/* Sección sobre los creadores */}
       <Box className="leaders-section">
-        <Paper className="leaders-card">
+        <Paper className="leaders-card" id="leaders">
           <PeopleIcon fontSize="large" color="primary" />
           <h2 className="card-title">Conoce a Nuestros Líder</h2>
           <div className="card-text">
@@ -64,7 +64,7 @@ const AboutComponent = () => {
       </Box>
 
       <Box className="thank-you-section">
-        <Paper className="thank-you-card">
+        <Paper className="thank-you-card" id="thank-you">
           <VerifiedIcon fontSize="large" color="success" />
           <h2 className="card-title">¡Gracias por elegir Frescura Tica!</h2>
           <p className="card-text">
