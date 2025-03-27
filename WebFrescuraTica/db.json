@@ -17,21 +17,6 @@
       "url": ""
     },
     {
-      "id": "2bbe",
-      "nombre": "Yuca",
-      "completed": false
-    },
-    {
-      "id": "34ae",
-      "nombre": "Melon",
-      "completed": false
-    },
-    {
-      "id": "97de",
-      "nombre": "Zanahoria",
-      "completed": false
-    },
-    {
       "id": "20d2",
       "codigo": "101",
       "nombre": "Lechuga americana",
@@ -46,22 +31,6 @@
       "cantidad": 10,
       "precio": 350,
       "url": ""
-    },
-    {
-      "id": "8e44",
-      "codigo": "106",
-      "nombre": "Sandia",
-      "cantidad": 50,
-      "precio": 1600,
-      "url": ""
-    },
-    {
-      "id": "1a9a",
-      "codigo": "12345",
-      "nombre": "abcdefg",
-      "cantidad": 12,
-      "precio": 121,
-      "url": "https://inventoryimages99.s3.us-east-2.amazonaws.com/pexels-any-lane-5945640.jpg"
     }
   ],
   "users": [

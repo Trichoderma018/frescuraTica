@@ -16,25 +16,25 @@ function InventoryComponent() {
     const fileInputRef = useRef(null); // Referencia al input de tipo file
     const [prueba,setPrueba] = useState(null)
     
-    // const S3_BUCKET = 'inventoryimages99';
-    // const REGION = 'us-east-2';
-    // const s3 = new AWS.S3({
-    //     accessKeyId: 'AKIA55HIDFXCEWOLPREJ',
-    //     secretAccessKey: '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',
-    //     region: REGION,
-    // });
-    // const uploadImageToS3 = async (file) => {
-    //     const params = {
-    //       Bucket: S3_BUCKET,
-    //       Key: file.name,
-    //       Body: file,
-    //       ContentType: file.type,
-    //       // ACL: 'public-read',
-    //     };
-    //     return s3.upload(params).promise();
-    // };
+     const S3_BUCKET = 'inventoryimages99';
+     const REGION = 'us-east-2';
+     const s3 = new AWS.S3({
+         accessKeyId: 'AKIA55HIDFXCEWOLPREJ',
+         secretAccessKey: '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',
+         region: REGION,
+     });
+     const uploadImageToS3 = async (file) => {
+         const params = {
+           Bucket: S3_BUCKET,
+           Key: file.name,
+           Body: file,
+           ContentType: file.type,
+            ACL: 'public-read',
+         };
+         return s3.upload(params).promise();
+     };
 
-    // Carga inventario con useEffect automáticamente
+    //Carga inventario con useEffect automáticamente
     useEffect(() => {
         cargarInventario();
     }, []);
