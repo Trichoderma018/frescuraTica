@@ -16,23 +16,7 @@ function InventoryComponent() {
     const fileInputRef = useRef(null); // Referencia al input de tipo file
     const [prueba,setPrueba] = useState(null)
     
-     const S3_BUCKET = 'inventoryimages99';
-     const REGION = 'us-east-2';
-     const s3 = new AWS.S3({
-         accessKeyId: 'AKIA55HIDFXCEWOLPREJ',
-         secretAccessKey: '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',
-         region: REGION,
-     });
-     const uploadImageToS3 = async (file) => {
-         const params = {
-           Bucket: S3_BUCKET,
-           Key: file.name,
-           Body: file,
-           ContentType: file.type,
-            ACL: 'public-read',
-         };
-         return s3.upload(params).promise();
-     };
+    
 
     //Carga inventario con useEffect automáticamente
     useEffect(() => {
@@ -85,12 +69,12 @@ function InventoryComponent() {
     // Función para manejar el cambio de archivo de imagen
     const handleImageChange = async (event) => {
         const file = event.target.files[0];
-        console.log(file);
+        //console.log(file);
         if (file) {
             try {
               const result = await uploadImageToS3(file);
               imagenUrl = result.Location;
-              console.log(imagenUrl);
+              //console.log(imagenUrl);
               setPrueba(imagenUrl)
             } catch (error) {
               console.error('Error al subir la imagen a S3:', error);
@@ -120,7 +104,9 @@ function InventoryComponent() {
             url: prueba // Ahora guardamos la URL de la imagen subida
         };
 
-        llamados.PostData(nuevoProducto, "inventario")
+
+     console.log(nuevoProducto)
+      llamados.PostData(nuevoProducto, "inventario")
             .then(() => {
                 cargarInventario();
                 limpiarCampos();
@@ -144,23 +130,10 @@ function InventoryComponent() {
     }
 
     function eliminarProducto(productoId) {
-        // Buscar el producto para obtener su URL de imagen
-        const producto = inventario.find(p => p.id === productoId);
-        
+        // Primero eliminamos el producto
         llamados.DeleteData('inventario', productoId)
             .then(() => {
-                // Si el producto tenía una imagen y la URL comienza con /assets/img/
-                // podríamos eliminarla del servidor aquí
-                if (producto && producto.url && producto.url.startsWith('/assets/img/')) {
-                    // Extraer el nombre del archivo de la URL
-                    const filename = producto.url.split('/').pop();
-                    
-                    // Llamar a la API para eliminar la imagen
-                    fetch(`http://localhost:3000/inventario/${filename}`, {
-                        method: 'DELETE'
-                    }).catch(error => console.error("Error al eliminar la imagen:", error));
-                }
-                
+                // Recargamos el inventario después de eliminar
                 cargarInventario();
             })
             .catch(error => console.error("Error al eliminar producto:", error));
@@ -200,7 +173,7 @@ function InventoryComponent() {
             nombre: nombre.trim(),
             cantidad: parseInt(cantidad, 10),
             precio: parseFloat(precio),
-            url: imagenUrl // Usamos la URL de la imagen subida
+            url: prueba // Usamos la URL de la imagen subida
         };
     
         llamados.UpdateData(productoActualizado, "inventario", editandoId)

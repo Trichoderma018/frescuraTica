@@ -1,36 +1,52 @@
 {
   "inventario": [
     {
-      "id": "c182",
-      "codigo": "102",
-      "nombre": "Culantro",
-      "cantidad": 50,
-      "precio": 300,
-      "url": ""
-    },
-    {
-      "id": "ea44",
-      "codigo": "105",
-      "nombre": "papaya",
-      "cantidad": 300,
-      "precio": 1000,
-      "url": ""
-    },
-    {
-      "id": "20d2",
+      "id": "117a",
       "codigo": "101",
-      "nombre": "Lechuga americana",
-      "cantidad": 30,
-      "precio": 350,
-      "url": ""
+      "nombre": "Culantro",
+      "cantidad": 100,
+      "precio": 300,
+      "url": "https://inventoryimages99.s3.us-east-2.amazonaws.com/cilantro.jpg"
     },
     {
-      "id": "6ee3",
+      "id": "4c88",
+      "codigo": "102",
+      "nombre": "Lechuga Americana",
+      "cantidad": 50,
+      "precio": 350,
+      "url": "https://inventoryimages99.s3.us-east-2.amazonaws.com/lechuga-americana.jpg"
+    },
+    {
+      "id": "c27c",
       "codigo": "103",
       "nombre": "Rabano",
-      "cantidad": 10,
+      "cantidad": 30,
       "precio": 350,
-      "url": ""
+      "url": "https://inventoryimages99.s3.us-east-2.amazonaws.com/Rabano.webp"
+    },
+    {
+      "id": "e305",
+      "codigo": "104",
+      "nombre": "Aguacate",
+      "cantidad": 700,
+      "precio": 600,
+      "url": "https://inventoryimages99.s3.us-east-2.amazonaws.com/aguacate.jpg"
+    },
+    {
+      "id": "07d2",
+      "codigo": "105",
+      "nombre": "Papaya",
+      "cantidad": 100,
+      "precio": 1600,
+      "url": "https://inventoryimages99.s3.us-east-2.amazonaws.com/papaya.jpg"
+    },
+    {
+      "id": "1396",
+      "codigo": "106",
+      "nombre": "Sandía",
+      "cantidad": 50,
+      "precio": 2000,
+      "url": "https://inventoryimages99.s3.us-east-2.amazonaws.com/sandia.jpg"
     }
   ],
   "users": [
