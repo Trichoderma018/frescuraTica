@@ -4,28 +4,21 @@
     padding: 20px;
     text-align: center;
     overflow: hidden;
+    width: 100vw;
+    height: 200px;
   }
   
-  .background-clouds {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 300%;
-    height: 100%;
-    background: url("/ruta-de-la-imagen-nube.png") repeat-x;
-    background-size: contain;
-    animation: moveClouds 20s linear infinite;
-    z-index: 0;
-  }
-  
-  @keyframes moveClouds {
-    from {
-      transform: translateX(0);
+  @keyframes float {
+    0% {
+        transform: translateX(0);
     }
-    to {
-      transform: translateX(-100%);
+    50% {
+        transform: translateX(30px);
     }
-  }
+    100% {
+        transform: translateX(0);
+    }
+}
   
   .navbar-content {
     position: relative;
