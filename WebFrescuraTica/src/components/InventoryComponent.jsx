@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import llamados from "../services/llamados"
 import "../styles/InventoryComponent.css"
 import AWS from 'aws-sdk';
-
+//comentario
 function InventoryComponent() {
     const [inventario, setInventario] = useState([]);
     const [codigo, setCodigo] = useState("");
