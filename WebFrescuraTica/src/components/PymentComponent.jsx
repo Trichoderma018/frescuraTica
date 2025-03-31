@@ -9,6 +9,7 @@ const PaymentComponent = () => {
   const [expiryDate, setExpiryDate] = useState("");
   const [cvv, setCvv] = useState("");
   const [amount, setAmount] = useState(0);
+  const [quantity, setQuantity] = useState(0);
   const [sinpeReceipt, setSinpeReceipt] = useState(null);
   const [cashCode, setCashCode] = useState("");
   const [loading, setLoading] = useState(false);
@@ -21,8 +22,9 @@ const PaymentComponent = () => {
 
   // Cuando el componente se monta, verificar si hay datos de carrito en location.state
   useEffect(() => {
-    if (location.state && location.state.total) {
+    if (location.state && location.state.total && location.state.quantity) {
       setAmount(location.state.total);
+      setQuantity(location.state.cantidad)
     }
   }, [location]);
 

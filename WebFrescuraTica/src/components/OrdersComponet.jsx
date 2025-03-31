@@ -37,8 +37,10 @@ const OrdersComponet = () => {
       console.error("Error al obtener el inventario:", error);
     }
   };
-
+  let arregloIds = JSON.parse(localStorage.getItem("ids")) || [];
   const handleAddToCart = (product) => {
+    arregloIds.push(product.id)
+    localStorage.setItem("ids",JSON.stringify([...arregloIds]))
     setCart((prevCart) => {
       const existingProduct = prevCart.find((item) => item.id === product.id);
       if (existingProduct) {
@@ -57,6 +59,8 @@ const OrdersComponet = () => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
     setSnackbarMessage("Producto eliminado del carrito.");
     setOpenSnackbar(true);
+    arregloIds.pop(productId)
+    localStorage.setItem("ids",JSON.stringify([...arregloIds]))
   };
 
   const calculateTotalPrice = () => {

@@ -18,6 +18,7 @@ function Navbarr() {
         component={Link}
         to="/"
         className="logo-title"
+        id="logo-title"
       >
         FRESCURA TICA
       </Typography>
