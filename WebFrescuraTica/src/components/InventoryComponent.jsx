@@ -16,7 +16,7 @@ function InventoryComponent() {
     const fileInputRef = useRef(null); // Referencia al input de tipo file
     const [prueba,setPrueba] = useState(null)
     //Aqui van las credenciales
-    
+  
 
     //Carga inventario con useEffect automáticamente
     useEffect(() => {

@@ -15,7 +15,7 @@ const PaymentComponent = () => {
   const [loading, setLoading] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
-  
+  const carrito = JSON.parse(localStorage.getItem("ids"))
   // Obtener la ubicación actual para acceder a los datos del estado
   const location = useLocation();
   const navigate = useNavigate();
@@ -32,6 +32,9 @@ const PaymentComponent = () => {
   const handlePaymentSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
+    console.log(quantity);
+    
+    
 
     // Simulamos una petición asíncrona con setTimeout
     setTimeout(() => {

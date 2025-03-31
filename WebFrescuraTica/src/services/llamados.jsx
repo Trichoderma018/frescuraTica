@@ -99,5 +99,24 @@ async function DeleteData(endpoint,id) {
     }
 }
 
+async function PatchData(data,endpoint, id) {
+    try {
+        const response = await fetch(`http://localhost:3000/${endpoint}/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
 
-export default { GetData, PostData, UpdateData, DeleteData, GetDataById };
+        if (!response.ok) {
+            throw new Error(`Error updating user with id ${id}`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error updating user:', error);
+        throw error;
+    }
+}
+export default { GetData, PostData, UpdateData, DeleteData, GetDataById,PatchData };
