@@ -16,7 +16,7 @@ function Navbarr() {
       <Typography
         variant="h4"
         component={Link}
-        to="/home"
+        to="/"
         className="logo-title"
       >
         FRESCURA TICA

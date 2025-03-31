@@ -27,6 +27,7 @@ function LoginComponente() {
         if (!encontrado) {
             console.log("Usuario o contraseña incorrectos");
         } else {
+            localStorage.setItem("token", "usuario-autenticado")
             navigate("/");
         }
     }

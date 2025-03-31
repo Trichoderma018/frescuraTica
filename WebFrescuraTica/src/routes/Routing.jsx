@@ -9,6 +9,7 @@ import Register from '../pages/Register';
 import Orders from '../pages/Orders';
 import Payment from '../pages/Payment';
 import About from '../pages/About';
+import PrivateRoute from '../components/PrivateRoute';
 
 function Routing() {
 
@@ -20,7 +21,7 @@ function Routing() {
           <Route path="/" element={<Home/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
-          <Route path="/inventory" element={<Inventory/>}/>
+          <Route path="/inventory" element={<PrivateRoute element={<Inventory/>} />}/>
           <Route path="/orders" element={<Orders/>}/>
           <Route path="/payment" element={<Payment/>}/>
           <Route path="/about" element={<About/>}/>
