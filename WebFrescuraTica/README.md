@@ -1,12 +1,11 @@
-# React + Vite
+# Frescura tica
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Es una aplicacion frontend de un ecommerse de productos agricolas
 
-Currently, two official plugins are available:
+Trata de una aplicacón que tiene un inventario en el cual se agregan productos que luego se ponen disposnibles en la pagina de pedidos
+En Pedidos se puede añadir al carrito y de ahí a formalizar el pago
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Cuenta con dos paguinas más que son el Home y el Acerca de donde se muestra informacion relevante
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Mas a detalle la paguina de inventario esta en una ruta privada que se desbloque poniendo En usuario Pablo y en contraseña 45678
+EL componente inventario tiene un get por id, un get all, un put un delete y un post
